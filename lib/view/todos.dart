@@ -25,11 +25,7 @@ class _TodosState extends State<TodosView> {
       appBar: AppBar(title: Text("todos demo")),
       body:Column(
       children: <Widget>[
-        MyContainer(
-          height: 20,
-          child: Text("Todos App Demo ")
-          ),
-        MyContainer(
+       MyContainer(
           height: 120,
           child: Text(
               "Total task need to done: ",
@@ -46,6 +42,7 @@ class _TodosState extends State<TodosView> {
                     itemBuilder: (context, index) {
                       final todo = model.todos[index];
                       return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           Text( todo.task,
                           style: TextStyle(
