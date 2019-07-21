@@ -1,23 +1,23 @@
 import 'package:flutter/foundation.dart' show debugDefaultTargetPlatformOverride;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:provide/provide.dart';
+import 'package:provider/provider.dart';
 
-import 'package:desktop/main.dart';
-
-import 'view/counter.dart';
-import 'model/counter.dart';
+import 'view/todos.dart';
+import 'model/todos.dart';
 
 void main() {
   debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
-  final providers = Providers()
-      ..provide(Provider.function((context) => Counter(0)));
+  List<Todo> todos = List.generate(3, (i) => Todo('Task $i'));
+
   runApp(
-    ProviderNode(
-      providers: providers,
+    ChangeNotifierProvider(
+      builder: (context) => TodosModel(),
       child: MaterialApp(
-        title: "counter demo",
-        home: CounterView()
-        ),
+        title: "todo demo app",
+        home: TodosView(),
+      )
     )
   );
+
 }
