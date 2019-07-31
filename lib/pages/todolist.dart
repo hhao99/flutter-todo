@@ -9,7 +9,7 @@ class TodoListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    UnmodifiableListView<Todo> todos = Provider.of<TodoModel>(context).todos;
+    List<Todo> todos = Provider.of<TodoModel>(context).todos;
     return Center(
       child: ListView.builder(
         itemCount: todos.length,
@@ -29,7 +29,7 @@ class TodoListPage extends StatelessWidget {
                 Text(todos[index].task),
               ],
             )
-          )
+          );
         },
 
       ),

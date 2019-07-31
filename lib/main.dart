@@ -1,6 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(MyApp());
+import 'package:to2/model/todo.dart';
+import 'package:to2/pages/todolist.dart';
+
+void main() {
+  Provider.debugCheckInvalidValueType = null;
+
+  List<Todo> todos = []
+    ..add(Todo('1st task',false))
+    ..add(Todo('2nd task',true));
+
+  runApp(ChangeNotifierProvider<TodoModel>(
+    builder: (context)=> TodoModel(todos),
+    child:
+      MyApp()
+
+  ));
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -11,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Todo App'),
     );
   }
 }
@@ -33,20 +50,8 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'start from here',
-            ),
-
-          ],
-        ),
-      ),
+      body:
+        TodoListPage()
     );
   }
 }
