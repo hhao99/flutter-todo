@@ -62,6 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
               return AlertDialog(
                 title: Text("add new task"),
                 content: TextField(
+
                   onSubmitted: (event) {
                     var todo = Todo(event);
                     TodoModel model = Provider.of<TodoModel>(context);
