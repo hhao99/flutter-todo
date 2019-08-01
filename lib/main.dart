@@ -51,7 +51,32 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body:
-        TodoListPage()
+        TodoListPage(),
+      floatingActionButton: IconButton(
+        icon: Icon(Icons.add),
+        onPressed: () {
+          //todo add add logic
+          showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: Text("add new task"),
+                content: TextField(
+                  onSubmitted: (event) {
+                    var todo = Todo(event);
+                    TodoModel model = Provider.of<TodoModel>(context);
+                    model.add(todo);
+                    Navigator.pop(context);
+                  },
+                )
+
+              );
+            }
+          );
+
+        },
+      )
     );
+
   }
 }
