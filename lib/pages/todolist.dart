@@ -1,12 +1,9 @@
 import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'package:to2/model/todo.dart';
 
 class TodoListPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     TodoModel model = Provider.of<TodoModel>(context);
@@ -63,9 +60,5 @@ class TodoListPage extends StatelessWidget {
 
     ]),
     );
-
-
-
-
   }
 }
