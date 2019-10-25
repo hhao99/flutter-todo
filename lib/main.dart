@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Todo App'),
+      home: MyHomePage(title: 'Todo App v1.9'),
     );
   }
 }
@@ -70,7 +70,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     Navigator.pop(context);
                   },
                 )
-
               );
             }
           );
