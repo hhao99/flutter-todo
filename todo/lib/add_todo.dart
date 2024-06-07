@@ -47,7 +47,8 @@ class _AddTodoFormState extends State<AddTodoForm> {
               ElevatedButton(
                 child: Text("add..."),
                 onPressed: () {
-                  todos.add(Todo(taskController.text, Uuid().v4()));
+                  todos.add(Todo(
+                      task: taskController.text, id: Uuid().v4(), done: true));
                   print(todos.items);
                   Navigator.pop(context);
                 },

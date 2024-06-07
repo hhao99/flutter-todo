@@ -43,8 +43,37 @@ class MyHomePage extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(title),
       ),
-      body: ListView(
-        children: todos.items.map((todo) => TodoItem(todo)).toList(),
+      body: ListView.builder(
+        itemCount: todos.items.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+              title: Text(todos.items[index].task,
+                  style: TextStyle(
+                    decoration: todos.items[index].done
+                        ? TextDecoration.lineThrough
+                        : null,
+                  )),
+              subtitle: Text(todos.items[index].toString()),
+              leading: CircleAvatar(
+                child: Text(todos.items[index].task[0]),
+              ),
+              trailing: Row(mainAxisSize: MainAxisSize.min, children: [
+                IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () {
+                      todos.remove(todos.items[index]);
+                    }),
+                IconButton(
+                    icon: Icon(
+                      todos.items[index].done
+                          ? Icons.toggle_on
+                          : Icons.toggle_off,
+                    ),
+                    onPressed: () {
+                      todos.toggle(todos.items[index]);
+                    })
+              ]));
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => {
@@ -66,12 +95,18 @@ class TodoItem extends StatelessWidget {
     var todos = context.watch<TodoModel>();
     return InkWell(
         child: ListTile(
-          title: Text(todo.task),
           leading: CircleAvatar(
               backgroundColor: Colors.amber, child: Text(todo.task[0])),
+          title: Text(
+            todo.task,
+            textAlign: todo.done ? TextAlign.left : TextAlign.end,
+          ),
         ),
-        onTap: () {
+        onDoubleTap: () {
           todos.remove(todo);
+        },
+        onTap: () {
+          todos.toggle(todo);
         });
   }
 }
