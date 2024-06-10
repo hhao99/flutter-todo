@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:todo/todo/todo.dart';
 
-class TodoPage extends StatelessWidget {
-  const TodoPage({super.key});
+class TodoHomePage extends StatelessWidget {
+  const TodoHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +16,15 @@ class TodoPage extends StatelessWidget {
           Todo(id: generateId(), task: 'third task'),
         ])),
       child: Scaffold(
-          appBar: AppBar(title: Text("Bloc Todo Demo")),
-          body: const TodoView()),
+        appBar: AppBar(title: Text("Bloc Todo Demo")),
+        body: const TodoView(),
+        floatingActionButton: ElevatedButton(
+            onPressed: () {
+              print('add new task');
+              Navigator.pushNamed(context, '/add');
+            },
+            child: Text("Add new task...")),
+      ),
     );
   }
 }
